@@ -1,6 +1,6 @@
 # weather-app-react-native
 ## About
-This is a simple MERN stack mobile application that allows users to search for weather information by city name. The application is built using React Native and Expo. The backend is built using Node.js, Express, and MongoDB. The application is deployed on Heroku and MongoDB Atlas. The application is built using the following technologies:
+This is a simple MERN stack mobile application that allows users to search for weather information by city name. The application is built using React Native and Expo. The backend is built using Node.js, Express, and MongoDB. The application is built using the following technologies:
 - React Native
 - Expo
 - Node.js
