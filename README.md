@@ -20,6 +20,6 @@ npm start
 4. Scan the QR code using the Expo app on your mobile device
 
 ## Usage
-1. Enter a city name in the search bar
-2. Press the search button
-3. The weather information for the city will be displayed
+1. Phone will check for location permissions
+2. If location permissions are granted, the app will automatically search for weather information based on the user's location
+3. If location permissions are not granted, the app will use the default location (Safi, Morocco)
