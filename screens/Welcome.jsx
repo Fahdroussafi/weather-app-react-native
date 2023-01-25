@@ -61,10 +61,8 @@ const Welcome = ({ navigation }) => {
       </View>
       <InnerContainer>
         <StyledFormArealogout>
-          <StyledButtonLogout onPress={() => {}}>
-            <ButtonText onPress={() => navigation.navigate("Login")}>
-              Logout
-            </ButtonText>
+          <StyledButtonLogout onPress={() => navigation.navigate("Login")}>
+            <ButtonText>Logout</ButtonText>
           </StyledButtonLogout>
         </StyledFormArealogout>
       </InnerContainer>
