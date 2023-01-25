@@ -40,31 +40,13 @@ export const PageLogo = styled.Image`
   transform: rotate(-15deg);
 `;
 
-export const Avatar = styled.Image`
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
-  border-width: 2px;
-  border-color: ${secondary};
-  margin-bottom: 10px;
-  margin-top: 10px;
-`;
-
-export const WelcomeImage = styled.Image`
-  height: 50px;
-  min-width: 100%;
-`;
-
 export const PageTitle = styled.Text`
-  font-size: 30px;
   text-align: center;
   font-weight: bold;
   color: ${brand};
-  padding: 10px;
   font-style: italic;
-  margin-top: 15px;
-
-  ${(props) => props.welcome && `font-size: 35px;`}
+  font-size: 25px;
+  ${(props) => props.welcome && `font-size: 25px;`}
 `;
 
 export const SubTitle = styled.Text`
@@ -84,6 +66,10 @@ export const SubTitle = styled.Text`
 
 export const StyledFormArea = styled.View`
   width: 90%;
+`;
+
+export const StyledFormArealogout = styled.View`
+  width: 40%;
 `;
 
 export const StyledTextInput = styled.TextInput`
@@ -125,6 +111,16 @@ export const ButtonText = styled.Text`
 `;
 
 export const StyledButton = styled.TouchableOpacity`
+  padding: 15px;
+  background-color: ${brand};
+  justify-content: center;
+  border-radius: 20px;
+  margin-vertical: 15px;
+  height: 50px;
+  align-items: center;
+`;
+
+export const StyledButtonLogout = styled.TouchableOpacity`
   padding: 15px;
   background-color: ${brand};
   justify-content: center;
