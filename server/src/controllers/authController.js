@@ -37,6 +37,7 @@ const CreateUser = asyncHandler(async (req, res) => {
       email: user.email,
       token: generateToken(user._id),
       message: "Your account has been created successfully",
+      status: "SUCCESS",
     });
   } else {
     res.status(400);
@@ -69,6 +70,7 @@ const LoginUser = asyncHandler(async (req, res) => {
       email: user.email,
       token: generateToken(user._id),
       message: "You have successfully logged in",
+      status: "SUCCESS",
     });
   } else {
     res.status(400);
