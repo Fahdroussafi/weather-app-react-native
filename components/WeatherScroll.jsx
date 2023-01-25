@@ -27,8 +27,8 @@ const CurrentTempEl = ({ data }) => {
           <Text style={styles.day}>
             {moment(data.dt * 1000).format("dddd")}
           </Text>
-          <Text style={styles.temp}>Night - {data.temp.night}&#176;C</Text>
           <Text style={styles.temp}>Day - {data.temp.day}&#176;C</Text>
+          <Text style={styles.temp}>Night - {data.temp.night}&#176;C</Text>
         </View>
       </View>
     );
@@ -40,7 +40,7 @@ const CurrentTempEl = ({ data }) => {
 const styles = StyleSheet.create({
   scrollView: {
     flex: 0.4,
-    backgroundColor: "#18181bcc",
+    backgroundColor: "#00000033",
     padding: 30,
   },
   image: {
@@ -60,17 +60,20 @@ const styles = StyleSheet.create({
   day: {
     fontSize: 20,
     color: "white",
+    fontWeight: "600",
     backgroundColor: "#3c3c44",
     padding: 10,
     textAlign: "center",
     borderRadius: 50,
     fontWeight: "200",
     marginBottom: 15,
+    borderColor: "#eee",
+    borderWidth: 1,
   },
   temp: {
     fontSize: 16,
     color: "white",
-    fontWeight: "100",
+    fontWeight: "600",
     textAlign: "center",
   },
   otherContainer: {
