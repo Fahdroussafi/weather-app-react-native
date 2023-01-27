@@ -15,31 +15,43 @@ import Welcome from "./../screens/Welcome";
 
 const Stack = createStackNavigator();
 
+// credentials context
+import { CredentialsContext } from "../components/CredentialsContext";
+
 const RootStack = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: "transparent",
-          },
-          headerTintColor: tertiary,
-          headerTransparent: true,
-          headerTitle: "",
-          headerLeftContainerStyle: {
-            paddingLeft: 20,
-          },
-        }}
-      >
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Signup" component={Signup} />
-        <Stack.Screen
-          options={{ headerTintColor: darkLight }}
-          name="Welcome"
-          component={Welcome}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <CredentialsContext.Consumer>
+      {({ storedCredentials }) => (
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: "transparent",
+              },
+              headerTintColor: tertiary,
+              headerTransparent: true,
+              headerTitle: "",
+              headerLeftContainerStyle: {
+                paddingLeft: 20,
+              },
+            }}
+          >
+            {storedCredentials ? (
+              <Stack.Screen
+                options={{ headerTintColor: darkLight }}
+                name="Welcome"
+                component={Welcome}
+              />
+            ) : (
+              <>
+                <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="Signup" component={Signup} />
+              </>
+            )}
+          </Stack.Navigator>
+        </NavigationContainer>
+      )}
+    </CredentialsContext.Consumer>
   );
 };
 
