@@ -140,21 +140,21 @@ export const Line = styled.View`
   height: 1px;
   width: 100%;
   background-color: ${darkLight};
-  margin-vertical: 10px;
+  margin-vertical: 20px;
 `;
 
 export const ExtraView = styled.View`
   justify-content: center;
   flex-direction: row;
   align-items: center;
-  padding: 10px;
+  padding: 50px;
 `;
 
 export const ExtraText = styled.Text`
   justify-content: center;
   align-items: center;
   color: ${darkLight};
-  font-size: 15px;
+  font-size: 14px;
 `;
 
 export const TextLink = styled.TouchableOpacity`
@@ -165,4 +165,5 @@ export const TextLink = styled.TouchableOpacity`
 export const TextLinkContent = styled.Text`
   color: ${brand};
   font-size: 15px;
+  font-weight: bold;
 `;
