@@ -52,15 +52,19 @@ const LoginUser = asyncHandler(async (req, res) => {
   //Check for user email
   const user = await User.findOne({ email });
   if (!user) {
-    res.status(400);
-    throw new Error("User does not exist");
+    res.status(400).json({
+      message: "User does not exist",
+      status: "ERROR",
+    });
   }
 
   //check for password match
   const isPasswordCorrect = await bcrypt.compare(password, user.password);
   if (!isPasswordCorrect) {
-    res.status(400);
-    throw new Error("Incorrect password");
+    res.status(400).json({
+      message: "Invalid credentials",
+      status: "ERROR",
+    });
   }
 
   if (user && (await bcrypt.compare(password, user.password))) {
@@ -73,15 +77,17 @@ const LoginUser = asyncHandler(async (req, res) => {
       status: "SUCCESS",
     });
   } else {
-    res.status(400);
-    throw new Error("Invalid credentials");
+    res.status(401).json({
+      message: "Invalid credentials",
+      status: "ERROR",
+    });
   }
 });
 
 //Generate JWT token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: "1h",
+    expiresIn: "30d",
   });
 };
 
