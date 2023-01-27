@@ -124,8 +124,8 @@ export const StyledButtonLogout = styled.TouchableOpacity`
   padding: 15px;
   background-color: ${brand};
   justify-content: center;
-  border-radius: 20px;
-  margin-vertical: 15px;
+  border-radius: 30px;
+  margin-vertical: 10px;
   height: 50px;
   align-items: center;
 `;
