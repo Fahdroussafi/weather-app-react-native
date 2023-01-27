@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@expo/webpack-config": "^0.17.2",
+    "@react-native-async-storage/async-storage": "~1.17.3",
     "@react-navigation/native": "^6.1.2",
     "@react-navigation/stack": "^6.3.11",
     "axios": "^1.2.3",
     "expo": "~47.0.12",
+    "expo-app-loading": "^2.1.1",
     "expo-constants": "^14.0.2",
     "expo-location": "^15.0.1",
     "expo-status-bar": "~1.4.2",
@@ -27,8 +29,7 @@
     "react-native-screens": "~3.18.0",
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "~0.18.9",
-    "styled-components": "^5.3.6",
-    "@react-native-async-storage/async-storage": "~1.17.3"
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
