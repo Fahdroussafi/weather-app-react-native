@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, ImageBackground } from "react-native";
 import * as Location from "expo-location";
@@ -13,12 +13,21 @@ import {
   StyledFormArealogout,
 } from "../components/styles";
 
+// Async storage
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+// credentials context
+import { CredentialsContext } from "./../components/CredentialsContext";
+
 const img = require("../assets/image.png");
 
 const API_KEY = "49cc8c821cd2aff9af04c9f98c36eb74";
 
-const Welcome = ({ navigation }) => {
+const Welcome = () => {
   const [data, setData] = useState({});
+
+  const { storedCredentials, setStoredCredentials } =
+    useContext(CredentialsContext);
 
   useEffect(() => {
     (async () => {
@@ -45,6 +54,14 @@ const Welcome = ({ navigation }) => {
     }
   };
 
+  const clearLogin = () => {
+    AsyncStorage.removeItem("weatheAppCredentials")
+      .then(() => {
+        setStoredCredentials("");
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <>
       <StatusBar style="dark" />
@@ -61,7 +78,7 @@ const Welcome = ({ navigation }) => {
       </View>
       <InnerContainer>
         <StyledFormArealogout>
-          <StyledButtonLogout onPress={() => navigation.navigate("Login")}>
+          <StyledButtonLogout onPress={clearLogin}>
             <ButtonText>Logout</ButtonText>
           </StyledButtonLogout>
         </StyledFormArealogout>
