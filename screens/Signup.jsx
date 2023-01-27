@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { StatusBar } from "expo-status-bar";
 import axios from "axios";
 
@@ -7,6 +7,12 @@ import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
 
 // formik
 import { Formik } from "formik";
+
+// aysnc-storage
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+// credentials context
+import { CredentialsContext } from "../components/CredentialsContext";
 
 import {
   StyledContainer,
@@ -40,6 +46,10 @@ const Signup = ({ navigation }) => {
   const [message, setMessage] = useState();
   const [messageType, setMessageType] = useState();
 
+  //context
+  const { storedCredentials, setStoredCredentials } =
+    useContext(CredentialsContext);
+
   const handleSignup = (credentials, setSubmitting) => {
     handleMessage(null);
     const url = "http://192.168.9.31:8080/api/auth/create-user";
@@ -47,25 +57,38 @@ const Signup = ({ navigation }) => {
       .post(url, credentials)
       .then((response) => {
         const result = response.data;
-        const { message, status, data } = result;
+        const { message, status, data, token, name } = result;
 
         if (status !== "SUCCESS") {
           handleMessage(message, status);
         } else {
-          navigation.navigate("Welcome", { ...data });
+          navigation.navigate("Welcome");
+          persistLogin({ ...data, token, name }, message, status);
         }
         setSubmitting(false);
       })
       .catch((error) => {
         setSubmitting(false);
+        handleMessage("An error occurred. Check your network and try again");
         console.log(error.toJSON());
-        handleMessage("An error occurred. Check your network and try again.");
       });
   };
 
   const handleMessage = (message, type = "") => {
     setMessage(message);
     setMessageType(type);
+  };
+
+  const persistLogin = (credentials, message, status) => {
+    AsyncStorage.setItem("weatheAppCredentials", JSON.stringify(credentials))
+      .then(() => {
+        handleMessage(message, status);
+        setStoredCredentials(credentials);
+      })
+      .error((error) => {
+        console.log(error);
+        handleMessage("Persisting login failed");
+      });
   };
 
   return (
