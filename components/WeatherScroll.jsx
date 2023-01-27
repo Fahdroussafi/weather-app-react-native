@@ -27,6 +27,8 @@ const CurrentTempEl = ({ data }) => {
           <Text style={styles.day}>
             {moment(data.dt * 1000).format("dddd")}
           </Text>
+          <Text style={styles.temp}>Min - {data.temp.min}&#176;C</Text>
+          <Text style={styles.temp}>Max - {data.temp.max}&#176;C</Text>
           <Text style={styles.temp}>Day - {data.temp.day}&#176;C</Text>
           <Text style={styles.temp}>Night - {data.temp.night}&#176;C</Text>
         </View>
