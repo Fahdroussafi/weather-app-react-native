@@ -70,5 +70,6 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "600",
     textAlign: "center",
+    fontStyle: "italic",
   },
 });
