@@ -21,8 +21,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 // credentials context
 import { CredentialsContext } from "./../components/CredentialsContext";
 
-const img = require("../assets/image.png");
-
 const API_KEY = Constants.expoConfig.extra.apiKey;
 
 const Welcome = () => {
@@ -41,7 +39,6 @@ const Welcome = () => {
 
       let location = await Location.getCurrentPositionAsync({});
       fetchDataFromApi(location.coords.latitude, location.coords.longitude);
-      console.log(location);
     })();
   }, []);
 
@@ -65,9 +62,22 @@ const Welcome = () => {
       .catch((error) => console.log(error));
   };
 
+  let img = "";
+  if (data.current) {
+    if (data.current.weather[0].main === "Clear") {
+      img = require("../assets/clear.jpg");
+    } else if (data.current.weather[0].main === "Clouds") {
+      img = require("../assets/clouds.jpg");
+    } else if (data.current.weather[0].main === "Rain") {
+      img = require("../assets/rain.jpg");
+    } else if (data.current.weather[0].main === "Thunderstorm") {
+      img = require("../assets/thunderstorm.jpg");
+    }
+  }
+
   return (
     <>
-      <StatusBar style="dark" />
+      <StatusBar style={(data.current && "light") || "dark"} />
       <View style={styles.container}>
         <ImageBackground source={img} style={styles.image}>
           <DateTime
