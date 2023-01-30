@@ -103,12 +103,12 @@ const DateTime = ({ current, lat, lon, timezone }) => {
           />
         </View>
       </View>
-      <View style={styles.rightAlign}>
-        <Text style={styles.timezone}>{timezone}</Text>
-        <Text style={styles.latlong}>
-          {lat}N {lon}E
-        </Text>
-      </View>
+        <View style={styles.rightAlign}>
+          <Text style={styles.timezone}>{timezone}</Text>
+          <Text style={styles.latlong}>
+            {lat}N {lon}E
+          </Text>
+        </View>
     </View>
   );
 };
@@ -134,9 +134,13 @@ const styles = StyleSheet.create({
   rightAlign: {
     textAlign: "right",
     marginTop: 20,
+    backgroundColor: "#18181b99",
+    borderRadius: 10,
+    padding: 10,
+    height: 80,
   },
   timezone: {
-    fontSize: 20,
+    fontSize: 17,
     color: "white",
   },
   latlong: {
