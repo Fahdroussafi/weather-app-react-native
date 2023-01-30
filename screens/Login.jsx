@@ -14,6 +14,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 // credentials context
 import { CredentialsContext } from "../components/CredentialsContext";
 
+import Constants from "expo-constants";
+
 import {
   StyledContainer,
   InnerContainer,
@@ -53,7 +55,8 @@ const Login = ({ navigation }) => {
 
   const handleLogin = (credentials, setSubmitting) => {
     handleMessage(null);
-    const url = "http://192.168.9.31:8080/api/auth/login";
+    const apiUrl = Constants.expoConfig.extra.apiUrl;
+    const url = `${apiUrl}/api/auth/login`;
     axios
       .post(url, credentials)
       .then((response) => {

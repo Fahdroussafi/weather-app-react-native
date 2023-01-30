@@ -52,7 +52,7 @@ const Signup = ({ navigation }) => {
 
   const handleSignup = (credentials, setSubmitting) => {
     handleMessage(null);
-    const url = "http://192.168.9.31:8080/api/auth/create-user";
+    const url = "/api/auth/create-user";
     axios
       .post(url, credentials)
       .then((response) => {

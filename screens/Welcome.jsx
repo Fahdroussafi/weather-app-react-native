@@ -6,6 +6,8 @@ import * as Location from "expo-location";
 import DateTime from "../components/DateTime";
 import WeatherScroll from "../components/WeatherScroll";
 
+import Constants from "expo-constants";
+
 import {
   InnerContainer,
   ButtonText,
@@ -21,7 +23,7 @@ import { CredentialsContext } from "./../components/CredentialsContext";
 
 const img = require("../assets/image.png");
 
-const API_KEY = "49cc8c821cd2aff9af04c9f98c36eb74";
+const API_KEY = Constants.expoConfig.extra.apiKey;
 
 const Welcome = () => {
   const [data, setData] = useState({});
@@ -33,12 +35,13 @@ const Welcome = () => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
-        fetchDataFromApi("32.300815", "-9.227203");
+        fetchDataFromApi("32.3008", "-9.2272");
         return;
       }
 
       let location = await Location.getCurrentPositionAsync({});
       fetchDataFromApi(location.coords.latitude, location.coords.longitude);
+      console.log(location);
     })();
   }, []);
 
