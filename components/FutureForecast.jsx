@@ -4,8 +4,8 @@ import moment from "moment-timezone";
 const FutureForecast = ({ data }) => {
   return (
     <View style={{ flexDirection: "row" }}>
-      {data && data.length > 0 ? (
-        data.map(
+      {data && data?.length > 0 ? (
+        data?.map(
           (data, idx) =>
             idx !== 0 && <FutureForecastItem key={idx} forecastItem={data} />
         )
