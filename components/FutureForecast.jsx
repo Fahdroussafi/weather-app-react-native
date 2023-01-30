@@ -1,6 +1,12 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, Animated } from "react-native";
 import moment from "moment-timezone";
+
+import Clear from "../assets/01d.svg";
+import Clouds from "../assets/03n.svg";
+import Rain from "../assets/09d.svg";
+import Snow from "../assets/11d.svg";
+
 const FutureForecast = ({ data }) => {
   return (
     <View style={{ flexDirection: "row" }}>
@@ -17,20 +23,30 @@ const FutureForecast = ({ data }) => {
 };
 
 const FutureForecastItem = ({ forecastItem }) => {
-  const img = {
-    uri:
-      "http://openweathermap.org/img/wn/" +
-      forecastItem.weather[0].icon +
-      "@2x.png",
-  };
   return (
     <View style={styles.futureForecastItemContainer}>
       <Text style={styles.day}>
         {moment(forecastItem.dt * 1000).format("ddd")}
       </Text>
-      <Image source={img} style={styles.image} />
-      <Text style={styles.temp}>Day - {forecastItem.temp.day}&#176;C</Text>
-      <Text style={styles.temp}>Night - {forecastItem.temp.night}&#176;C</Text>
+      <View>
+        {forecastItem.weather[0].main === "Clear" ? (
+          <Clear width={100} height={100} />
+        ) : forecastItem.weather[0].main === "Clouds" ? (
+          <Clouds width={100} height={100} />
+        ) : forecastItem.weather[0].main === "Rain" ? (
+          <Rain width={100} height={100} />
+        ) : forecastItem.weather[0].main === "Snow" ? (
+          <Snow width={100} height={100} />
+        ) : (
+          <View />
+        )}
+      </View>
+      <Text style={styles.tempDay}>
+        Day - {forecastItem.temp.day.toFixed(0)}&deg; C
+      </Text>
+      <Text style={styles.tempNight}>
+        Night - {forecastItem.temp.night.toFixed(0)}&deg; C
+      </Text>
     </View>
   );
 };
@@ -65,11 +81,23 @@ const styles = StyleSheet.create({
     borderColor: "#eee",
     borderWidth: 1,
   },
-  temp: {
+  tempDay: {
     fontSize: 14,
     color: "white",
+    borderRadius: 50,
+    backgroundColor: "#3c3c44",
     fontWeight: "600",
     textAlign: "center",
     fontStyle: "italic",
+  },
+  tempNight: {
+    fontSize: 14,
+    color: "black",
+    borderRadius: 50,
+    backgroundColor: "#fff",
+    fontWeight: "600",
+    textAlign: "center",
+    fontStyle: "italic",
+    marginTop: 10,
   },
 });

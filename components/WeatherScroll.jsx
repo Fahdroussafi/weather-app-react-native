@@ -3,6 +3,13 @@ import { View, ScrollView, Image, Text, StyleSheet } from "react-native";
 import moment from "moment-timezone";
 import FutureForecast from "./FutureForecast";
 
+import Clear from "../assets/01d.svg";
+import Clouds from "../assets/03n.svg";
+import Rain from "../assets/09d.svg";
+import Snow from "../assets/11d.svg";
+
+import AnimatedSVG from "../animated/Clear";
+
 const WeatherScroll = ({ weatherData }) => {
   return (
     <ScrollView horizontal={true} style={styles.scrollView}>
@@ -16,21 +23,37 @@ const WeatherScroll = ({ weatherData }) => {
 
 const CurrentTempEl = ({ data }) => {
   if (data && data.weather) {
-    const img = {
-      uri:
-        "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@4x.png",
-    };
     return (
       <View style={styles.currentTempContainer}>
-        <Image source={img} style={styles.image} />
+        <View>
+          {data.weather[0].main === "Clear" ? (
+            <Clear width={100} height={100} />
+          ) : data.weather[0].main === "Clouds" ? (
+            <Clouds width={100} height={100} />
+          ) : data.weather[0].main === "Rain" ? (
+            <Rain width={100} height={100} />
+          ) : data.weather[0].main === "Snow" ? (
+            <Snow width={100} height={100} />
+          ) : (
+            <View />
+          )}
+        </View>
         <View style={styles.otherContainer}>
           <Text style={styles.day}>
             {moment(data.dt * 1000).format("dddd")}
           </Text>
-          <Text style={styles.temp}>Min - {data.temp.min}&#176;C</Text>
-          <Text style={styles.temp}>Max - {data.temp.max}&#176;C</Text>
-          <Text style={styles.temp}>Day - {data.temp.day}&#176;C</Text>
-          <Text style={styles.temp}>Night - {data.temp.night}&#176;C</Text>
+          <Text style={styles.temp}>
+            Min - {data.temp.min.toFixed(0)}&deg; C
+          </Text>
+          <Text style={styles.temp}>
+            Max - {data.temp.max.toFixed(0)}&deg; C
+          </Text>
+          <Text style={styles.temp}>
+            Day - {data.temp.day.toFixed(0)}&deg; C
+          </Text>
+          <Text style={styles.temp}>
+            Night - {data.temp.night.toFixed(0)}&deg; C
+          </Text>
         </View>
       </View>
     );
@@ -77,6 +100,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "600",
     textAlign: "center",
+    fontStyle: "italic",
   },
   otherContainer: {
     paddingRight: 40,
