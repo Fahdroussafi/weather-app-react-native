@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, Animated } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import moment from "moment-timezone";
 
 import Clear from "../assets/01d.svg";

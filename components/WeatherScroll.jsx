@@ -1,5 +1,5 @@
 import React from "react";
-import { View, ScrollView, Image, Text, StyleSheet } from "react-native";
+import { View, ScrollView, Text, StyleSheet } from "react-native";
 import moment from "moment-timezone";
 import FutureForecast from "./FutureForecast";
 
@@ -8,7 +8,6 @@ import Clouds from "../assets/03n.svg";
 import Rain from "../assets/09d.svg";
 import Snow from "../assets/11d.svg";
 
-import AnimatedSVG from "../animated/Clear";
 
 const WeatherScroll = ({ weatherData }) => {
   return (
