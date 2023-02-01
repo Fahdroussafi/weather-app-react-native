@@ -14,6 +14,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 // credentials context
 import { CredentialsContext } from "../components/CredentialsContext";
 
+import Constants from "expo-constants";
+
 import {
   StyledContainer,
   InnerContainer,
@@ -52,7 +54,8 @@ const Signup = ({ navigation }) => {
 
   const handleSignup = (credentials, setSubmitting) => {
     handleMessage(null);
-    const url = "/api/auth/create-user";
+    const apiUrl = Constants.expoConfig.extra.apiUrl;
+    const url = `${apiUrl}/api/auth/create-user`;
     axios
       .post(url, credentials)
       .then((response) => {
